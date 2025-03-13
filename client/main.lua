@@ -4,38 +4,18 @@ CreateThread(
     function()
         while true do
             Wait(500)
-            if IsPauseMenuActive() then
-                display = false
-            else
-                display = true
-            end
             SendNUIMessage(
                 {
                     action = "toggleLogo",
-                    show = display
+                    show = not IsPauseMenuActive(),
+                    config = {
+                        size = Config.LogoSize,
+                        position = Config.LogoPosition,
+                        url = Config.LogoURL,
+                        opacity = Config.LogoOpacity
+                    }
                 }
             )
         end
-    end
-)
-
-RegisterNetEvent(
-    "onClientResourceStart",
-    function(resource)
-        if resource ~= GetCurrentResourceName() then
-            return
-        end
-
-        SendNUIMessage(
-            {
-                action = "config",
-                config = {
-                    size = Config.LogoSize,
-                    position = Config.LogoPosition,
-                    url = Config.LogoURL,
-                    opacity = Config.LogoOpacity,
-                }
-            }
-        )
     end
 )
