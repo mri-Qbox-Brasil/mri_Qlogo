@@ -1,6 +1,6 @@
 function init() {
     window.parent.postMessage({
-        action: "config",
+        action: "toggleLogo",
         config: {
             url: "https://assets.mriqbox.com.br/branding/logo96.png",
             size: 256,
@@ -13,7 +13,6 @@ function init() {
 window.addEventListener("message", function (event) {
     if (event.data.action === "toggleLogo") {
         document.getElementById("logo-container").style.display = event.data.show ? "block" : "none";
-    } else if (event.data.action === "config") {
         let config = event.data.config;
         const logo = document.getElementById("server-logo");
         logo.src = config.url;
